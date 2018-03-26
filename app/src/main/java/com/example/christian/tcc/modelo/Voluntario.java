@@ -5,40 +5,40 @@ package com.example.christian.tcc.modelo;
  */
 
 public class Voluntario {
-    private Integer IdVoluntario;
-    private String Nome;
-    private Double Latitude;
-    private Double Longitude;
+    private Integer idVoluntario;
+    private String nome;
+    private Double latitude;
+    private Double longitude;
 
     public Integer getIdVoluntario() {
-        return IdVoluntario;
+        return idVoluntario;
     }
 
     public void setIdVoluntario(Integer idVoluntario) {
-        IdVoluntario = idVoluntario;
+        this.idVoluntario = idVoluntario;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public Double getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     public void setLatitude(Double latitude) {
-        Latitude = latitude;
+        this.latitude = latitude;
     }
 
     public Double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(Double longitude) {
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 }

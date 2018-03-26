@@ -1,53 +1,55 @@
 package com.example.christian.tcc.modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by christian on 11/03/2018.
  */
 
-public class Agente {
-    private Integer IdAgente;
-    private String Nome;
-    private Double Latitude;
-    private Double Longitude;
-    private String TipoAgente = "";
+public class Agente implements Serializable {
+    private Integer idAgente;
+    private String nome;
+    private Double latitude;
+    private Double longitude;
+    private String tipoAgente = "";
 
     public Integer getIdAgente() {
-        return IdAgente;
+        return idAgente;
     }
 
     public void setIdAgente(Integer idAgente) {
-        IdAgente = idAgente;
+        this.idAgente = idAgente;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public Double getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     public void setLatitude(Double latitude) {
-        Latitude = latitude;
+        this.latitude = latitude;
     }
 
     public Double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(Double longitude) {
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 
     public String getTipoAgente() {
-        return TipoAgente;
+        return tipoAgente;
     }
 
     public void setTipoAgente(String tipoAgente) {
-        TipoAgente = tipoAgente;
+        this.tipoAgente = tipoAgente;
     }
 }

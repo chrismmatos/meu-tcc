@@ -8,49 +8,62 @@ import java.io.Serializable;
 
 
 public class Usuario implements Serializable {
-    private Integer IdUsuario = 0;
-    private Integer IdUsuarioLogado = 0;
-    private String TipoUsuario = "";
-    private Integer TempoVoluntario = 2;
-    private Integer DistanciaVoluntario = 1000;
+    private Integer idUsuario = 0;
+    private Integer idUsuarioLogado = 0;
+    private String tipoUsuario = "";
+    private Integer tempoVoluntario = 2;
+    private Integer distanciaVoluntario = 1000;
+
+    public Usuario(Integer idUsuarioLogado, String tipoUsuario) {
+        this.idUsuarioLogado = idUsuarioLogado;
+        this.tipoUsuario = tipoUsuario;
+    }
+
+    public Usuario(Integer idUsuario, Integer idUsuarioLogado, String tipoUsuario, Integer tempoVoluntario, Integer distanciaVoluntario) {
+        this.idUsuario = idUsuario;
+        this.idUsuarioLogado = idUsuarioLogado;
+        this.tipoUsuario = tipoUsuario;
+        this.tempoVoluntario = tempoVoluntario;
+        this.distanciaVoluntario = distanciaVoluntario;
+    }
 
     public Integer getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
     public void setIdUsuario(Integer idUsuario) {
-        IdUsuario = idUsuario;
+        this.idUsuario = idUsuario;
     }
 
     public Integer getIdUsuarioLogado() {
-        return IdUsuarioLogado;
+        return idUsuarioLogado;
     }
 
     public void setIdUsuarioLogado(Integer idUsuarioLogado) {
-        IdUsuarioLogado = idUsuarioLogado;
+        this.idUsuarioLogado = idUsuarioLogado;
     }
 
     public String getTipoUsuario() {
-        return TipoUsuario;
+        return tipoUsuario;
     }
 
     public void setTipoUsuario(String tipoUsuario) {
-        TipoUsuario = tipoUsuario;
+        this.tipoUsuario = tipoUsuario;
     }
 
     public Integer getTempoVoluntario() {
-        return TempoVoluntario;
+        return tempoVoluntario;
     }
 
     public void setTempoVoluntario(Integer tempoVoluntario) {
-        TempoVoluntario = tempoVoluntario;
+        this.tempoVoluntario = tempoVoluntario;
     }
 
     public Integer getDistanciaVoluntario() {
-        return DistanciaVoluntario;
+        return distanciaVoluntario;
     }
 
     public void setDistanciaVoluntario(Integer distanciaVoluntario) {
-        DistanciaVoluntario = distanciaVoluntario;
+        this.distanciaVoluntario = distanciaVoluntario;
     }
 }

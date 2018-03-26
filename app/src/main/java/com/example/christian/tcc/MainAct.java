@@ -3,9 +3,11 @@ package com.example.christian.tcc;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,14 +29,18 @@ import android.widget.Toast;
 
 import com.example.christian.tcc.LoginAct;
 import com.example.christian.tcc.R;
+import com.example.christian.tcc.dados.DBHelper;
+import com.example.christian.tcc.dados.UsuariosContract;
+import com.example.christian.tcc.modelo.Usuario;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.zip.Inflater;
 
 import static com.example.christian.tcc.Manifest.*;
 
@@ -44,16 +50,10 @@ public class MainAct extends AppCompatActivity{
 
     private TextView tvCoordinate;
     private GoogleApiClient mGoogleApiClient;
+    private DBHelper dbHelper;
 
-
-    @BindView(R.id.tv_exibe_latitude)
-    TextView txtLatitude;
-
-    @BindView(R.id.tv_exibe_longidute)
-    TextView txtLongitude;
-
-    @BindView(R.id.btn_onde_estou)
     Button btnGps;
+    TextView txtLatitude, txtLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,78 @@ public class MainAct extends AppCompatActivity{
             finish();
         }
 
-        ButterKnife.bind(this);
+
+        txtLatitude= (TextView) findViewById(R.id.tv_exibe_latitude);
+        txtLongitude = (TextView) findViewById(R.id.tv_exibe_longidute);
+
+        btnGps = (Button) findViewById(R.id.btn_onde_estou);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         pedirPermissoes();
 
+        dbHelper = new DBHelper(this);
+
+
+        SQLiteDatabase writableDatabase = dbHelper.getWritableDatabase();
+
+
+        ContentValues values = new ContentValues();
+        values.put(UsuariosContract.UsuarioEntry.COLUMN_ID_USUARIO_LOGADO, "2" );
+        values.put(UsuariosContract.UsuarioEntry.COLUMN_TIPO_USUARIO, "S" );
+        values.put(UsuariosContract.UsuarioEntry.COLUMN_TEMPO_VOLUNTARIO, "353" );
+        values.put(UsuariosContract.UsuarioEntry.COLUMN_DISTANCIA_VOLUNTARIO, "344" );
+
+        writableDatabase.insert(UsuariosContract.UsuarioEntry.TABLE_NAME, null, values);
+
+
+
+
+
+        btnGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainAct.this, CadastroActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
     }
+
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_exit) {
+            mAuth.signOut();
+            startActivity(new Intent(this, LoginAct.class));
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
     private void pedirPermissoes() {
 
@@ -131,36 +198,6 @@ public class MainAct extends AppCompatActivity{
         txtLatitude.setText(latPoint.toString());
         txtLongitude.setText(lngPoint.toString());
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_exit) {
-            mAuth.signOut();
-            startActivity(new Intent(this, LoginAct.class));
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
 
 
 }

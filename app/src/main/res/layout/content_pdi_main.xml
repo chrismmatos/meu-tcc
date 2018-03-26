@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:accessibilityTraversalBefore="@+id/b"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.christian.tcc.PdiMainActivity"
     tools:showIn="@layout/activity_pdi_main">
 
     <Button
         android:id="@+id/btn_solicitarPAE"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginTop="8dp"
@@ -23,8 +25,10 @@
 
     <Button
         android:id="@+id/btn_solicitarPA"
+        style="@android:style/Widget.Material.Light.Button.Toggle"
         android:layout_width="0dp"
         android:layout_height="64dp"
+        android:elevation="0dp"
         android:text="SOLICITAR ACOMPANHAMENTO"
         app:layout_constraintEnd_toEndOf="@+id/editText2"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,14 +38,17 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="0dp"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textMultiLine"
         android:text="Voluntários que estão próximos serão notificados para acompanhá-lo"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -50,20 +57,24 @@
 
     <EditText
         android:id="@+id/editText3"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
         android:ems="10"
+        android:gravity="center"
         android:inputType="textMultiLine"
         android:text="Agentes que estão próximos serão notificados para acompanhá-lo de acordo com a sua solicitação."
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_solicitarPA" />
 
     <Spinner
         android:id="@+id/spinnerPAE"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
